@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <style>
+* {background-color: #151719}
+        textarea {
+            resize: vertical;
+            color: #dbdbdb
+        }
+        .formfield * {
+            vertical-align: text-top;
+            margin: 10px;
+        }
+        label {
+            font-weight:bold;
+            color: #555
+        }
+    </style>
+    <head>
+        <title>Quotation tool</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <label><h1>Quotation tool v0.1</h1></label>
+        <p class="formfield">
+            <label for="textarea">Input</label>
+            <textarea id="input" name="input" rows="100" cols = "100" autofocus></textarea>
+            <label for="textarea">Result</label>
+            <textarea id="result" rows="100" cols = "103" readonly autofocus></textarea>
+        </p>
+        <script language="JavaScript">
+            document.getElementById("input")
+            .addEventListener("input", (event) => {
+                let text = document.getElementById('input').value;
+                let lines = text.split(/\r?\n/);
+                let result = lines.map(line => `'${line}'`).join(',\r\n');
+                document.getElementById('result').innerHTML = result;
+                navigator.clipboard.writeText(result);
+            });
+            document.getElementById("result")
+            .addEventListener("result", (event) => {
+                let text = document.getElementById('result').value;
+                navigator.clipboard.writeText(result);
+            });              
+        </script>
+    </body>
+</html>
