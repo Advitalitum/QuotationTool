@@ -32,7 +32,7 @@
             document.getElementById("input")
             .addEventListener("input", (event) => {
                 let text = document.getElementById('input').value;
-                let lines = text.split(/\r?\n/);
+                let lines = text.split(/\r?\n/).filter(x => x !== "");
                 let result = lines.map(line => `'${line}'`).join(',\r\n');
                 document.getElementById('result').innerHTML = result;
                 navigator.clipboard.writeText(result);
