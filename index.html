@@ -21,7 +21,7 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <label><h1>Quotation tool v0.1</h1></label>
+        <label><h1>Quotation tool v0.1.1</h1></label>
         <p class="formfield">
             <label for="textarea">Input</label>
             <textarea id="input" name="input" rows="100" cols = "100" autofocus></textarea>
@@ -32,7 +32,7 @@
             document.getElementById("input")
             .addEventListener("input", (event) => {
                 let text = document.getElementById('input').value;
-                let lines = text.split(/\r?\n/).filter(x => x !== "");
+                let lines = text.split(/\r?\n/).filter(x => x !== "").map(x => x.replace(/\,+$/, '').replace(/^\'+/, '').replace(/\'+$/, ''));
                 let result = lines.map(line => `'${line}'`).join(',\r\n');
                 document.getElementById('result').innerHTML = result;
                 navigator.clipboard.writeText(result);
